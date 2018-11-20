@@ -8,19 +8,6 @@
 # string. Otherwise, the characters specified in the second argument to the
 # function will be removed from the string.
 
-# NOTES
-# strip(arg) trims leading and trailing 'arg' characters
-# if no arg, trims spaces (\s)
-# Will need ^ and $ for regex
-# Don't forget about greedy vs non-greedy
-#   {n,m}? or *? or +? performs a nongreedy match of the preceding group.
-#   "Note that the question mark can have two meanings in regular expressions: declaring a nongreedy
-#   match or flagging an optional group. These meanings are entirely unrelated."
-# might need sys.argv for command line arguments
-#   sys.argv[0] is the command itself, sys.argv[1] is the string to be stripped,
-#   sys.argv[2] is the char to strip (I think?)
-# %s substitutes string value so you can put variable in regex pattern
-
 import re,sys
 
 def regexStrip(string, char=''):
