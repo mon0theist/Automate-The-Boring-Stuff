@@ -43,12 +43,4 @@ elif len(sys.argv) == 2:
     elif sys.argv[1] in mcbShelf:
         pyperclip.copy(mcbShelf[sys.argv[1]])
 
-
-# if len(sys.argv) == 3 and sys.argv[1].lower() == 'delete':
-#     print('Keyword \'' + str(sys.argv[2]) + '\' has been deleted')
-#     del mcbShelf[sys.argv[2]]
-# elif len(sys.argv) == 2 and sys.argv[1] == 'delete':
-#     print('All keywords have been deleted')
-#     mcbShelf.clear()
-
 mcbShelf.close()
