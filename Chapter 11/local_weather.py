@@ -3,12 +3,14 @@
 # # ATBS Chapter 11 - "Ideas for Similar Programs"
 # Open your favorite local weather provider for your area
 
-import webbrowser, pyperclip
-
 # using weatherunderground.com
+# use webbrowser to open weatherunderground.com/weather/
+# https://www.wunderground.com/weather/us/il/aurora
 
-# prompt user for country, state, city
-    # verify input (while loop?)
-# convert user input into 2-char entry
-    # usa = us, illinois = il, etc.
-# use webbrowser to open weatherunderground.com/weather
+import webbrowser
+
+country = input('Please enter country (2-chars, US for USA): ').lower()
+state = input('Please enter state (2-chars, IL for Illinois): ').lower()
+city = input('Please enter city (i.e. Aurora): ').lower()
+
+webbrowser.open('http://wunderground.com/weather/' + country + '/' + state + '/' + city)
