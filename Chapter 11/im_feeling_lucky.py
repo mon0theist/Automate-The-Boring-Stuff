@@ -14,9 +14,9 @@ res.raise_for_status()
 soup = bs4.BeautifulSoup(res.text, features='lxml') # creates BS4 object
 
 # TODO: Open a browser tab for each result
-# linkElems = soup.select('.r a') # may be out of date and need fixing
-linkElems = soup.select('div r')
+# this part doesn't seem to work, not sure why
+linkElems = soup.select('.r a')
 
-numOpen = min(5, len(linkElems))
+numOpen = min(5, len(linkElems)) # 5 or less search results
 for i in range(numOpen):
     webbrowser.open('http://google.com' + linkElems[i].get('href'))
