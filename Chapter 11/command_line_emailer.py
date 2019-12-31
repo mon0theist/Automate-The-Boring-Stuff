@@ -60,27 +60,18 @@ compose.click()
 
 # use Selenium to enter To: field
 recipient = browser.find_element_by_id('message-to-field')
-recipient.click() # probably not necessary but trying to ensure accuracy
+# recipient.click() # probably not necessary but trying to ensure accuracy
 recipient.send_keys(email)
-time.sleep(1)
-
-subject = browser.find_element_by_id('q_T y_Z2uhb3X je_0 jb_0 X_0 N_fq7 G_e A_6EqO C_Z281SGl ir_0 P_0 bj3_Z281SGl b_0 j_n d_72FG em_N')
+subject = browser.find_element_by_class_name("compose-header en_0")
 subject.click()
 print('Email from Python (command_line_emailer.py)')
-time.sleep(1)
 
-# recipient.send_keys(Keys.TAB)
-# time.sleep(1)
-# recipient.send_keys(Keys.TAB)
-# time.sleep(1)
-# recipient.send_keys(Keys.TAB) # Subject takes 3 Tabs to work
-
-#recipient.send_keys(Keys.TAB) # Body
-body = browser.find_element_by_id('rte em_N ir_0 iy_A iz_h N_6Fd5')
+body = browser.find_element_by_class_name('rte em_N ir_0 iy_A iz_h N_6Fd5')
 body.click()
-time.sleep(1)
+# time.sleep(1)
 # use Selenium to paste/print string into body of email
-recipient.send_keys(string) # paste string, body of email
+print(string) # paste string, body of email
 
 # use Selenium to click Send
-send = browser.find_element_by_link_text('Send')
+send = browser.find_element_by_class_name('q_Z2aVTcY e_dRA k_w r_P H_6VdP s_3mS2U en_0 M_1gLo4F V_M cZ1RN91d_n y_Z2uhb3X A_6EqO u_e69 b_0 C_52qC I4_Z29WjXl ir3_1JO2M7 it3_dRA')
+send.click()
