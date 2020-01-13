@@ -33,6 +33,8 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 #
 # row = i
 # column = j
+#
+# sheet.cell(row=i, column=j).value
 
 
 # Create workbook, set sheet
@@ -40,10 +42,22 @@ wb = openpyxl.Workbook()
 sheet = wb.active
 
 # Determine N
-N = sys.argv[1]
-if not type(N) == int:
+n = sys.argv[1]
+if not type(n) == int:
     print('Invalid argument: Please enter an int value\n')
     exit()
 else:
+    # Cell A1 should be blank
+    sheet.cell(row=1, column=1).value = 'BLANK'
+
+    # create x-axis (row 1, columns 2 thru n)
+    for i in range(2, n+2):
+        sheet.cell(row=1, column=i).value = str(i - 1)
+        #TESTING print(sheet.cell(row=1, column=i).value)
+
+    # create y-axis (column 1/A, rows 2 thru n)
+    for i in range(2, n+2):
+        sheet.cell(row=i, column=1).value = str(i - 1)
+        #TESTING print(sheet.cell(row=i, column=1).value)
+
     # write cells
-    
