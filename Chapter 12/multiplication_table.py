@@ -12,6 +12,7 @@
 #
 # Row 1 and column A should be used for labels and should be in bold.
 
+
 import openpyxl, sys
 from openpyxl.utils import get_column_letter, column_index_from_string
 # DEPRECATED:
@@ -35,6 +36,12 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 # column = j
 #
 # sheet.cell(row=i, column=j).value
+#
+# Excel Formula:
+# =[cell]*[cell]
+#
+# Outer Loop (for each column):
+#   Inner Loop (for each row in each column)
 
 
 # Create workbook, set sheet
@@ -54,10 +61,17 @@ else:
     for i in range(2, n+2):
         sheet.cell(row=1, column=i).value = str(i - 1)
         #TESTING print(sheet.cell(row=1, column=i).value)
+        # figure out how to set text as Bold and Centered
 
     # create y-axis (column 1/A, rows 2 thru n)
     for i in range(2, n+2):
         sheet.cell(row=i, column=1).value = str(i - 1)
         #TESTING print(sheet.cell(row=i, column=1).value)
+        # figure out how to set text as Bold and Centered
 
     # write cells
+    # for each row (i) (starting with B):
+    #   loop from (i)(2) to (i)(end of row)
+    # sheet.max_column
+    for i in range(2, (sheet.max_column + 1):
+        for j in range(2, ):
