@@ -1,7 +1,0 @@
-This is a sentence.
-
-Somewhere in here there will be a phone number.
-
-123-456-7890
-
-Hopefully the regex search finds it
