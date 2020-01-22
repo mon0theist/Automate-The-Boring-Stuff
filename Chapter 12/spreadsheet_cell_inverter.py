@@ -26,14 +26,17 @@ ws2 = wb2.active
 sheet_data = []
 for i in range(1, ws.max_column + 1):
     col_list = []
-    for j in range(1, ws.max_row + 1):for y in range(1, ws.max_column + 1):
-    for x in range(1, ws.max_row + 1):
+    for j in range(1, ws.max_row + 1):
         cell = get_column_letter(i) + str(j)
         col_list.append(ws[cell].value)
     sheet_data.append(col_list)
 
 # write new inverted spreadsheet
-# inverted col should = len(ws.max_row)
-# invert rows should = len(max_col)
-for x in range(1, ws.max_row + 1):
-    
+for x in range(1, ws.max_column + 1):
+    for y in range(1, ws.max_row + 1):
+        ws2[get_column_letter(y) + str(x)].value = sheet_data[(x - 1)][(y - 1)]
+
+print('Saving file: invert_me_output.xlsx')
+wb2.save('invert_me_output.xlsx')
+
+print('Done!')
