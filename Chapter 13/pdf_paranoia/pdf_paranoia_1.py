@@ -2,6 +2,7 @@
 #
 # ATBS - Chapter 13 - PDF Paranoia (Part 1)
 #
+# (Part 1)
 # Using the os.walk() function from Chapter 9, write a script that will go through
 # every PDF in a folder (and its subfolders) and encrypt the PDFs using a password
 # provided on the command line. Save each encrypted PDF with an _encrypted.pdf
@@ -9,12 +10,13 @@
 # the program attempt to read and decrypt the file to ensure that it was encrypted
 # correctly.
 #
+# (Part 2)
 # Then, write a program that finds all encrypted PDFs in a folder (and its subfolders)
 # and creates a decrypted copy of the PDF using a provided password. If the password
 # is incorrect, the program should print a message to the user and continue to
 # the next PDF
 
-import os, sys, pprint, PyPDF2
+import os, sys, PyPDF2
 
 # create empty pdf list
 pdf_list = []
@@ -50,7 +52,7 @@ for i in range(len(pdf_list)):
         crypt_reader.decrypt(str(sys.argv[1]))
         try:
             crypt_reader.getPage(0)
-            print('Encryption confirmed: ' + str(pdf_list[i]) + '_encrypted.pdf')
+            print('Encryption confirmed: ' + os.path.splitext(pdf_list[i])[0] + '_encrypted.pdf')
         except PyPDF2.utils.PdfReadError:
             print('Error: ' + str(pdf_list[i]) + ' was not successfully decrypted')
             continue
