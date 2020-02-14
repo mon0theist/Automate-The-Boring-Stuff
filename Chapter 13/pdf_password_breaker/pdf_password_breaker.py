@@ -37,18 +37,93 @@ import PyPDF2
 # load encrypted pdf
 pdf_file = open('encrypted.pdf', 'rb')
 pdf_reader = PyPDF2.PdfFileReader(pdf_file)
-print('Loading encrypted.pdf...')
+print('Loaded encrypted.pdf...')
 if pdf_reader.isEncrypted == True:
-    continue
+    print('Confirmed encryption')
 elif pdf_reader.isEncrypted == False:
-    print('Error: File ' + str(pdf_file) + ' is not encrypted')
-    exit()
+    print('Error: File is not encrypted')
 
 # open/read dictionary.txt
-# read dictionary.txt into a list
+# read dictionary.txt into a list without newlines
 namelist = open('dictionary.txt', 'r').read().splitlines()
+# program takes too long to test with 43k names, testing with shorter list
+namelist_short = open('dictionary100.txt', 'r').read().splitlines()
+namelist_correct = open('dictionary101.txt', 'r').read().splitlines()
 
 # loop over each item in namelist
-for i in namelist:
+# nested if conditions?
+print('Attempting bruteforce with dictionary.txt using all-upper and all-lower cases...')
+for i in range(len(namelist_correct)):
+    if pdf_reader.decrypt(namelist_correct[i]) == 0:
+        print()
+
+'''
+print('Attempting bruteforce with dictionary.txt using all-upper and all-lower cases...')
+for i in range(len(namelist_correct)):
+    if pdf_reader.decrypt(namelist_correct[i]) or pdf_reader.decrypt(namelist_correct[i].lower()) == 0:
+        if pdf_reader.decrypt(namelist_correct[i]) or pdf_reader.decrypt(namelist_correct[i].lower()) == 1:
+            print('Password hacked!')
+            print('Your password is: ' + str(namelist_correct[i]))
+            print('Exiting program...')
+        # else:
+        #    print()
+    elif:
+        print('All passwords attempted, all have failed.')
+        print('File remains encrypted.')
+'''
+
+'''
+for i in range(len(namelist_correct)):
+    if pdf_reader.decrypt(namelist_correct[i]) or pdf_reader.decrypt(namelist_correct[i].lower()) == 0:
+        print(str(i) + ' ' + namelist_correct[i] + ' / ' + namelist_correct[i].lower())
+        if pdf_reader.decrypt(namelist_correct[i]) or pdf_reader.decrypt(namelist_correct[i].lower()) == 1:
+            print('Password hacked!')
+            print('Your password is: ' + str(namelist_correct[i]))
+            print('Exiting program...')
+        else:
+            print('All passwords attempted, all have failed.')
+            print('File remains encrypted.')
+
+'''
+
+'''
+for i in range(len(namelist_correct)):
+    if pdf_reader.decrypt(namelist_correct[i]) == 0:
+        if pdf_reader.decrypt(namelist_correct[i].lower()) == 0:
+            if pdf_reader.decrypt(namelist_correct[i]) == 1:
+                print('Password hacked!')
+                print('Your password is: ' + str(namelist_correct[i]))
+                print('Exiting program...')
+            elif pdf_reader.decrypt(namelist_correct[i].lower()) == 1:
+                print('Password hacked!')
+                print('Your password is: ' + str(namelist_correct[i]))
+                print('Exiting program...')
+        else:
+            continue
+    else:
+        print('All passwords attempted, all have failed.')
+        print('File remains encrypted.')
+
+'''
+
+'''
+for i in range(len(namelist_correct) + 1):
     # attempt to decrypt password with name
-    pdf_reader.decrypt(i)
+    if pdf_reader.decrypt(namelist_correct[i]) == 0:
+        print(str(i) + str(namelist[i]))
+    elif pdf_reader.decrypt(namelist_correct[i].lower()) == 0:
+        print(str(i) + str(namelist[i]))
+    elif pdf_reader.decrypt(namelist_correct[i]) == 1:
+        print('Password hacked!')
+        print('Your password is: ' + str(namelist_correct[i]))
+        print('Exiting program...')
+    elif pdf_reader.decrypt(namelist_correct[i].lower()) == 1:
+        print('Password hacked!')
+        print('Your password is: ' + str(namelist_correct[i]))
+        print('Exiting program...')
+    else:
+        print('All passwords attempted, all have failed.')
+        print('File remains encrypted.')
+'''
+
+print('Script complete, closing program...')
