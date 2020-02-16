@@ -24,6 +24,9 @@
 # Times New Roman bold center
 # Brush Script Std
 
+## SKIPPING This
+# I don't know how to create Styles in LibreOffice Writer and it's too much of a pain
+# to figure out
 
 import docx
 
