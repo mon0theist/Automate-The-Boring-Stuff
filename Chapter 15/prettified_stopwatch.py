@@ -35,6 +35,7 @@ print('Started.')
 startTime = time.time() # get the first lap's start time
 lastTime = startTime
 lapNum = 1
+clipboard = []
 
 # TODO: Start tracking laps
 try:
@@ -42,9 +43,13 @@ try:
         input()
         lapTime = round(time.time() - lastTime, 2)
         totalTime = round(time.time() - startTime, 2)
-        print('Lap #%s: %s (%s)' % (str(lapNum).rjust(2), str(totalTime).rjust(5), str(lapTime).rjust(6)), end='')
+        # print('Lap #%s: %s (%s)' % (str(lapNum).rjust(2), str(totalTime).rjust(5), str(lapTime).rjust(6)), end='')
+        lap = ('Lap #%s: %s (%s)' % (str(lapNum).rjust(2), str(totalTime).rjust(5), str(lapTime).rjust(6)))
+        print(lap, end='')
+        clipboard.append(lap)
         lapNum += 1
         lastTime = time.time() # reset the last lap time
 except KeyboardInterrupt:
     # Handle the CTRL+C exception to keep its error message from displaying
-    print('\nDone.')
+    pyperclip.copy('\n'.join(clipboard))
+    print('\nDone! Laps have been copied to clipboard')
