@@ -50,7 +50,7 @@ for i in range(len(email_list)):
         # pick a different chore
         random_chore = random.choice(chore_list)
 
-    # assign chore after passing while loop check
+    # assign chore after passing the while loop check
     chore_tracker[name] = random_chore
     chore_list.remove(random_chore)
 
@@ -58,8 +58,22 @@ print('Chores have been randomly assigned:\n')
 pprint.pprint(chore_tracker)
 
 # TODO: Email assigned chored to people
-print('Emailing chores...')
+print('Connecting to Gmail...')
+print('Recommend using App-Specific Password')
+gmail_addr = input('Gmail Address: ')
+gmail_pw = input('Password: ')
+smtp_obj = smtplib.SMTP('smtp.gmail.com', 587)
+smtp_obj.ehlo()
+smtp_obj.starttls()
+smtp_obj.login(gmail_addr, gmail_pw)
 
+for i in range(len(email_list)):
+    name = email_list[i]
+    smtp_obj.sendmail(gmail_addr, name, 'Subject: Chores Selection\nDear %s,\nYour randomly selected chore for this week is %s.' % (name, chore_tracker[name]))
+
+# disconnect
+print('Emails have been sent, disconnecting from SMTP Server...')
+smtp_obj.quit()
 
 # LAST STEP - saving the new/updated shelf file
 shelf_file['chore_tracker'] = chore_tracker
