@@ -26,6 +26,7 @@ LOGO_FILENAME = 'catlogo.png'
 
 logoIm = Image.open(LOGO_FILENAME)
 logoWidth, logoHeight = logoIm.size
+# width, height of catlogo.png should be 808(W)x768(H)
 
 os.makedirs('withLogo', exist_ok=True)
 # Loop over all files in the working directory
@@ -37,7 +38,7 @@ for filename in os.listdir('.'):
 
     im = Image.open(filename)
     width, height = im.size
-    # check if image is twice as big as logo
+    # check if image is twice as big as logo (1616x1536)
     if (width >= (logoWidth * 2) and height >= (logoHeight * 2)):
         # Check if image needs to be resized
         if width > SQUARE_FIT_SIZE and height > SQUARE_FIT_SIZE:
