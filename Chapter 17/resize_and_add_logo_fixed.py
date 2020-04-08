@@ -18,19 +18,20 @@
 # be at least twice the width and height of the logo image before the logo is pasted.
 # Other wise, it should skip adding the logo.
 #
-# Resized catlogo.png to 50% scale: catlogo_resized.png
-# Should be 404x384
+# Resized catlogo.png to 150x150: catlogo_resized_150x150.png
 
 import os
 from PIL import Image
 
 SQUARE_FIT_SIZE = 300
-LOGO_FILENAME = 'catlogo_resized.png'
+LOGO_FILENAME = 'catlogo_resized_150x150.png'
 
 logoIm = Image.open(LOGO_FILENAME)
 logoWidth, logoHeight = logoIm.size
 print('Logo dimensions: %sx%s\n' % (logoWidth, logoHeight))
-# width, height of catlogo.png should be 808(W)x768(H)
+# width, height of catlogo.png should normally be 808(W)x768(H)
+# however this is too large to fit in the SQUARE_FIT_SIZE value of 300, so I'm
+# resizing the catlogo.png to 150x150
 
 os.makedirs('withLogo', exist_ok=True)
 # Loop over all files in the working directory
