@@ -49,7 +49,7 @@ for foldername, subfolders, filenames in os.walk('/home'):
 
     # If more than half of files were photos,
     # print the absolute path of the folder.
-    if numPhotoFiles >= (numNonPhotoFiles * 2):
-        print('Located likely photo folders: \n')
-        for i in range(len(filenames)):
-            print(os.path.abspath(foldername[i]))
+if numPhotoFiles >= (numNonPhotoFiles * 2):
+    # print('Located likely photo folders: \n')
+    for i in range(len(foldername)):
+        print(os.path.abspath(foldername[i]))
