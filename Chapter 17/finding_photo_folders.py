@@ -26,7 +26,14 @@
 import os
 from PIL import Image
 
-for foldername, subfolders, filenames in os.walk('/home'):
+# constant, so that search path can be easily modified
+SEARCH_FOLDER = os.path.abspath('/home/abdulhakeem/Pictures')
+print('Search Folder: ' + str(SEARCH_FOLDER))
+
+# results
+folder_list = []
+
+for foldername, subfolders, filenames in os.walk(SEARCH_FOLDER):
     numPhotoFiles = 0
     numNonPhotoFiles = 0
     for filename in filenames:
@@ -35,21 +42,20 @@ for foldername, subfolders, filenames in os.walk('/home'):
             numNonPhotoFiles += 1
             continue    # skip to next filename
 
-        # Open image file using Pillow.
-        img_obj = Image.open(filename)
-        img_obj_w, img_obj_h = img_obj.size
+            # Open image file using Pillow.
+            img_obj = Image.open(filename)
+            img_obj_w, img_obj_h = img_obj.size
 
-        # Check if width & height are larger than 500.
-        if img_obj_w > 500 and img_obj_h > 500:
-            # Image is large enough to be considered a photo.
-            numPhotoFiles += 1
-        else:
-            # Image is too small to be a photo.
-            numNonPhotoFiles += 1
+            # Check if width & height are larger than 500.
+            if img_obj_w > 500 and img_obj_h > 500:
+                # Image is large enough to be considered a photo.
+                numPhotoFiles += 1
+            else:
+                # Image is too small to be a photo.
+                numNonPhotoFiles += 1
 
-    # If more than half of files were photos,
-    # print the absolute path of the folder.
-if numPhotoFiles >= (numNonPhotoFiles * 2):
-    # print('Located likely photo folders: \n')
-    for i in range(len(foldername)):
-        print(os.path.abspath(foldername[i]))
+        if numPhotoFiles >= (numNonPhotoFiles * 2):
+            # check for duplicates
+            if not os.path.abspath(foldername) in folder_list:
+                folder_list.append(os.path.abspath(foldername))
+                print(os.path.abspath(foldername))
